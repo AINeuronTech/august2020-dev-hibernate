@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.Query;
 import java.util.List;
 @Slf4j
 public class StudentDAOImpl  implements StudentDAO{
@@ -30,21 +31,44 @@ public class StudentDAOImpl  implements StudentDAO{
 
     @Override
     public List<Student> readAllStudents() {
-        return null;
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<Student> students = session.createQuery("FROM Student").list();
+            return students;
+        }
     }
 
     @Override
     public Student findByID(int id) {
-        return null;
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+          /* Student student=(Student)session.load(Student.class,new Integer(id));
+           Student student1=(Student)session.load(Student.class,new Integer(id));
+          Student student2=(Student)session.load(Student.class,new Integer(id));*/
+
+            Student student=(Student)session.get(Student.class,new Integer(id));
+            Student student1=(Student)session.get(Student.class,new Integer(id));
+            Student student2=(Student)session.get(Student.class,new Integer(id));
+          return student;
+
+        }
     }
 
     @Override
     public void delete(Integer id) {
-
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            Student student = findByID(id);
+            session.delete(student);
+            session.getTransaction().commit();
+            log.info("Successfully deleted " + student.getFirstName());
+        }
     }
 
     @Override
     public void deleteAll() {
-
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            Query query=session.createQuery("DELETE FROM Student");
+            query.executeUpdate();
+        }
     }
 }

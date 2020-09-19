@@ -17,7 +17,8 @@
 		<!-- Echo the SQL to stdout -->
 		<property name="show_sql">true</property>
 		<!-- Set the current session context -->
-		<property name="current_session_context_class">thread</property>
+		<!-- Close the Session Once Transaction is Commpleted -->
+		<!--<property name="current_session_context_class">thread</property> -->
 		<!-- Drop and re-create the database schema on startup -->
 		<!-- Validate, Update, Creat,create-drop -->
 		<property name="hbm2ddl.auto">create</property>
@@ -29,13 +30,13 @@
 		<mapping class="hibernate.demo.entity.Student" />
 		<mapping class="hibernate.demo.entity.User" />
 		<mapping class="hibernate.demo.entity.Address" />
-		<!--<mapping class="hibernate.demo.entity.Stock" />
+		<mapping class="hibernate.demo.entity.Stock" />
 		<mapping class="hibernate.demo.entity.StockDailyRecord" />
-		<mapping class="hibernate.demo.entity.Stock" />-->
+		<!--<mapping class="hibernate.demo.entity.Stock" />-->
 		<mapping class="hibernate.demo.entity.Employee" />
 		<mapping class="hibernate.demo.entity.ContractEmployee" />
 		<mapping class="hibernate.demo.entity.RegularEmployee" />
-		<!--<mapping class="hibernate.demo.entity.Cart" />
-		<mapping class="hibernate.demo.entity.Item" />-->
+		<mapping class="hibernate.demo.entity.Cart" />
+		<mapping class="hibernate.demo.entity.Item" />
 	</session-factory>
 </hibernate-configuration>

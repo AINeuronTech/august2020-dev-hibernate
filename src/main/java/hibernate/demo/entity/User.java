@@ -13,7 +13,7 @@ public class User {
     private int rollNumber;
     private String phoneNumber;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "adress_id")
+    //@JoinColumn(name = "address_id", referencedColumnName = "adress_id")
     private Address address;
 
     public User() {

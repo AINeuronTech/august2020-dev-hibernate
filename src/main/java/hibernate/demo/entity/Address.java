@@ -14,7 +14,7 @@ public class Address {
     private String cityName;
     private String state;
     private String country;
-    @OneToOne(mappedBy = "address")
+    @OneToOne //(mappedBy = "address")
     private User user;
 
     public Address() {

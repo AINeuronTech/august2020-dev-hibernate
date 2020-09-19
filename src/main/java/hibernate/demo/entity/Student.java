@@ -60,4 +60,15 @@ public class Student {
     public void setTotalMark(int totalMark) {
         this.totalMark = totalMark;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", totalMark=" + totalMark +
+                '}';
+    }
 }
